@@ -28,7 +28,8 @@ model User {
   id         String @id @default(uuid())
   email      String @unique
   createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt        
+  updatedAt  DateTime @updatedAt
+  orders     Order[]    
 }
 
 model Order {
@@ -39,8 +40,8 @@ model Order {
 
   userId           String
   productId        String
-  user             User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  product          Product @relation(fields: [productId], references: [id], onDelete: Restrict)
+  user    User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Restrict)
 }
 
 model DownloadVerification {
