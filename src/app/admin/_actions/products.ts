@@ -3,7 +3,7 @@
 import db from "@/db/db"
 import { z } from "zod"
 import fs from "fs/promises"
-import { redirect } from "next/navigation"
+import { notFound, redirect } from "next/navigation"
 
 const fileSchema = z.instanceof(File, { message: "Required"})
 const imageSchema = fileSchema.refine(file => file.size === 0 || file.type.startsWith("image/") )
@@ -56,4 +56,6 @@ export async function toggleProductAvailability(
 
 export async function deleteProduct(id: string) {
   const product = await db.product.delete({ where: { id }})
+
+  if (product == null) return notFound()
 }

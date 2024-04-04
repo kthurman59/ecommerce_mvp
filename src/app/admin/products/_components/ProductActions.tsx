@@ -1,6 +1,6 @@
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { startTransition, useTransition } from "react";
-import { toggleProductAvailability } from "../../_actions/products";
+import { deleteProduct, toggleProductAvailability } from "../../_actions/products";
 
 
 export function ActiveToggleDropdownItem({
