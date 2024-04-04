@@ -25,4 +25,24 @@ export function ActiveToggleDropdownItem({
   )
 }
 
-export function DeleteDropdownItem() {}
+export function DeleteDropdownItem({
+  id,
+  disabled
+}: {
+  id: string
+  disabled: boolean
+}) {
+  const [isPending, startTransition] = useTransition()
+  return (
+    <DropdownMenuItem
+      disabled={disabled || isPending}
+      onClick={() => {
+        startTransition(async () => {
+          await deleteProduct(id)
+        })
+      }}
+    >
+      Delete
+    </DropdownMenuItem>
+  )
+}
