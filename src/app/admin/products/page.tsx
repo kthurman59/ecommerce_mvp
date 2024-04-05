@@ -25,16 +25,17 @@ export default function AdminProductsPage() {
 }
 
 async function ProductsTable() {
-  const products = await db.product.findMany({ 
+  const products = await db.product.findMany({
     select: {
       id: true,
       name: true,
       priceInCents: true,
-      isAvailableForPurchase: true,
-      _count: { select: { orders: true }}
+      isAvailableForPurchase: false,
+      _count: { select: { orders: true } }
     },
-    orderBy: { name: "asc" }
+    orderBy: { name: "asc" },
   })
+
 
   if (products.length === 0) return <p>No products found</p>
 
