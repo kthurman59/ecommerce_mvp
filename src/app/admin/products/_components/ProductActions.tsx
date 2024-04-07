@@ -21,6 +21,7 @@ export function ActiveToggleDropdownItem({
     onClick={() => {
       startTransition(async () => {
         await toggleProductAvailability(id, !isAvailableForPurchase)
+        router.refresh()
     })
   }}
  >
@@ -48,7 +49,7 @@ export function DeleteDropdownItem({
           router.refresh()
         })
       }}
-    >n
+    >
       Delete
     </DropdownMenuItem>
   )
