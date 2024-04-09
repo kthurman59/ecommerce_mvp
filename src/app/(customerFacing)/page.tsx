@@ -1,3 +1,4 @@
+import { ProductCard } from "@/components/ProductCard"
 import { Button } from "@/components/ui/button"
 import db from "@/db/db"
 import { Product } from "@prisma/client"
@@ -34,7 +35,7 @@ type ProductsGridSectionProps = {
   productsFetcher: () => Promise<Product[]>
 }
 
-function ProductGridSection({ productsFetcher, title}:
+async function ProductGridSection({ productsFetcher, title}:
   ProductsGridSectionProps) {
  return (
   <div className="space-y-4">
@@ -48,7 +49,9 @@ function ProductGridSection({ productsFetcher, title}:
       </Button>
     </div>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <ProductCard />
+      {(await productsFetcher()).map(product => (
+        <ProductCard key={product.id} {...product} />
+      ))}
     </div>
   </div>
  )
