@@ -35,7 +35,7 @@ async function ProductsSuspense() {
   const products = await getProducts()
   
   return products.map(product => (
-    <ProductCard key={products.id} {...product} />
+    <ProductCard key={product.id} {...product} />
   ))
 
 }
