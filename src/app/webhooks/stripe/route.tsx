@@ -39,12 +39,16 @@ export async function POST(req: NextRequest) {
     data: { productId, expiresAt: new Date(Date.now() * 1000 * 60 * 60 *24) },
   })
 
-  resend.emails.send({ 
+  await resend.emails.send({ 
     from: `Support <${process.env.SENDER_EMAIL}>`,
     to: email,
     subject: "Order Confirmation",
     react: <h1>Hi</h1>
    })
+
+
   }
+  return new NextResponse()
 }
+
 
